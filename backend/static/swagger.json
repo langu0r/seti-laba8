@@ -1,0 +1,93 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Photo Gallery API",
+    "description": "API для управления фото-галереей",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000",
+  "schemes": ["http"],
+  "paths": {
+    "/images": {
+      "get": {
+        "summary": "Получить список изображений",
+        "description": "Возвращает список всех загруженных изображений по категориям",
+        "responses": {
+          "200": {
+            "description": "Список изображений"
+          }
+        }
+      }
+    },
+    "/upload": {
+      "post": {
+        "summary": "Загрузить изображение",
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          },
+          {
+            "name": "category",
+            "in": "formData",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Файл загружен"
+          }
+        }
+      }
+    },
+    "/uploads/{filename}": {
+      "get": {
+        "summary": "Получить изображение",
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Изображение"
+          }
+        }
+      }
+    },
+    "/select": {
+      "post": {
+        "summary": "Выбрать изображение",
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "body",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Изображение выбрано"
+          }
+        }
+      }
+    },
+    "/selected": {
+      "get": {
+        "summary": "Получить выбранное изображение",
+        "responses": {
+          "200": {
+            "description": "Выбранное изображение"
+          }
+        }
+      }
+    }
+  }
+}
